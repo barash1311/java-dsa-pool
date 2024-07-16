@@ -87,7 +87,7 @@ public class POLYNOMIAL {
 
     public static void main(String[] args) {
         POLYNOMIAL hii=new POLYNOMIAL();
-        hii.add(1,2);
+        hii.add(0,0);
         hii.add(2,3);
         hii.add(3,4);
         hii.display();

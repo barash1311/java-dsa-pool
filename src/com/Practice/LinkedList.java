@@ -164,4 +164,20 @@ public class LinkedList {
             prev=ist;
         }while(swapped);
     }
+    public void removeduplicate() {
+        if(head==null) return;
+        Node temp1 = head;
+        while (temp1 != null && temp1.next!=null) {
+            Node temp2 = temp1.next;
+            if (temp1.val == temp2.val) {
+                temp1.next = temp2.next;
+                size--;
+            }
+            else{
+                temp1 = temp1.next;
+            }
+
+        }
+        return;
+    }
 }

@@ -142,4 +142,26 @@ public class LinkedList {
         }
         System.out.println("null");
     }
+    public void bubblesort(){
+        if(head==null){
+            return;
+        }
+        boolean swapped;
+        Node ist;
+        Node prev=null;
+        do{
+            swapped=false;
+            ist=head;
+            while(ist.next!=prev){
+                if(ist.val>ist.next.val){
+                    int temp=ist.val;
+                    ist.val=ist.next.val;
+                    ist.next.val=temp;
+                    swapped=true;
+                }
+                ist=ist.next;
+            }
+            prev=ist;
+        }while(swapped);
+    }
 }

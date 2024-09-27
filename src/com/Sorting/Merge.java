@@ -15,15 +15,15 @@ public class Merge {
         ArrayList<Integer> temp=new ArrayList<>();
         int left=low;
         int right=middle+1;
-        while(left<=middle && right<=high){
-            if(arr[left]<arr[right]){
+        while(left<=middle && right<=high) {
+            if (arr[left] < arr[right]) {
                 temp.add(arr[left]);
                 left++;
-            }
-            else{
+            } else {
                 temp.add(arr[right]);
                 right++;
             }
+        }
             while(left<=middle){
                 temp.add(arr[left]);
                 left++;
@@ -36,12 +36,12 @@ public class Merge {
                 arr[i]=temp.get(i-low);
             }
 
-        }
+
     }
 
 
     public static void main(String[] args) {
-        int[] arr={3,2,1,5,4};
+        int[] arr = { 5, 4, 3, 2,6,3,4,5,6,7,8,9,1,0, 1 };
         System.out.println(Arrays.toString(arr));
         mergeSort(arr,0,arr.length-1);
         System.out.println(Arrays.toString(arr));

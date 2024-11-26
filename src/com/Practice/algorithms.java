@@ -70,16 +70,25 @@ public class algorithms {
         }
         System.out.println(Arrays.toString(arr));
     }
+    public static int largest(int[] arr){
+        int n=arr.length;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n-i-1;j++){
+                if(arr[j]>arr[j+1]){
+                    int temp=arr[j];
+                    arr[j]=arr[j+1];
+                    arr[j+1]=temp;
+                }
+            }
+        }
+        return arr[n-1];
+    }
     public static void main(String[] args) {
         int[] arr2={8,7,6,5,4,3,3,2,1,0};
         int[] arr={1,2,3,4,5,6,7,8,9,10};
-       boolean exits= linear(arr2,4);
-       System.out.println(exits);
-       boolean exits1= binarySearch(arr2,4);
-        System.out.println(exits1);
-        bubbleSort(arr2);
-        selectionsort(arr2);
-        insertion(arr2);
+        int lar=largest(arr);
+        System.out.println(lar);
+
 
     }
 }

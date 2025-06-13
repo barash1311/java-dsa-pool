@@ -4,8 +4,12 @@ import java.util.Arrays;
 
 public class ArrayOperation {
     public static void main(String[] args){
-
-    }
+        int[] arr={10,2,3,4,5,6,7,8,9};
+        System.out.println(Arrays.toString(arr));
+//        leftRoate2(arr,arr.length,3);
+//        System.out.println(Arrays.toString(arr));
+        leader2(arr,arr.length);
+     }
     public static int insert(int[] arr,int n,int x,int cap,int pos){
         if(n==cap){
             return n;
@@ -126,4 +130,55 @@ public class ArrayOperation {
         arr[a]=arr[b];
         arr[b]=temp;
     }
+    public static void roateByD(int[] arr,int n,int d){
+        for(int i=0;i<d;i++){
+            leftRotate(arr,n);
+        }
+    }
+    public static void leftRotate(int[] arr,int n){
+        int first=arr[0];
+        for(int i=1;i<n;i++){
+            arr[i-1]=arr[i];
+        }
+        arr[n-1]=first;
+    }
+
+    public static void leftRoate2(int[] arr,int n,int d){
+        int[] temp=new int[d];
+        for(int i=0;i<d;i++){
+            temp[i]=arr[i];
+        }
+        for(int i=d;i<n;i++){
+            arr[i-d]=arr[i];
+        }
+        for(int i=0;i<d;i++){
+            arr[n-d+i]=temp[i];
+        }
+    }
+    public static void leader(int[] arr,int n){
+        for(int i=0;i<n;i++){
+            boolean flag=false;
+            for(int j=i+1;j<n;j++){
+                if(arr[i]<=arr[j]){
+                    flag=true;
+                    break;
+                }
+            }
+            if(!flag){
+                System.out.println(arr[i]);
+            }
+        }
+    }
+    public static void leader2(int[] arr,int n){
+        int current_leader=arr[n-1];
+        System.out.println("current_leader:"+current_leader);
+        for(int i=n-2;i>=0;i--){
+            if(current_leader<arr[i]){
+                current_leader=arr[i];
+                System.out.println("current_leader:"+current_leader);
+            }
+        }
+    }
+
+
 }

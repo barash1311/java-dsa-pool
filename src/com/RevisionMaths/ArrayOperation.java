@@ -112,4 +112,18 @@ public class ArrayOperation {
         a=b;
         b=temp;
     }
+    public static void moveToEnd2(int[] arr,int n){
+        int count=0;
+        for(int i=0;i<=n;i++){
+            if(arr[i]!=0){
+                swap2(arr,arr[i],arr[count]);
+                count++;
+            }
+        }
+    }
+    public static void swap2(int[]arr,int a,int b){
+        int temp=arr[a];
+        arr[a]=arr[b];
+        arr[b]=temp;
+    }
 }

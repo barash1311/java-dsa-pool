@@ -179,6 +179,160 @@ public class ArrayOperation {
             }
         }
     }
+    public static void printFreq(int[] arr,int n){
+        int freq=1;
+        int i=1;
+        while(i<n){
+            while(i<n && arr[i] == arr[i-1]){
+                freq++;
+                i++;
+            }
+            System.out.println(arr[i-1] +" "+freq);
+            i++;
+            freq=1;
+
+        }
+        if(n==1 || arr[n-1]!=arr[n-2]){
+            System.out.println(arr[n-1]);
+        }
+    }
+    public static int maxProfit(int[] arr,int start,int end){
+        if(end<=start){
+            return 0;
+        }
+        int profit=0;
+        for(int i=start;i<=end;i++){
+            for(int j=i+1;j<=end;j++){
+                if(arr[j]>arr[i]){
+                    int  current_profit=arr[j]-arr[i]+maxProfit(arr,start,i-1)+maxProfit(arr,j+1,end);
+                    profit=Math.max(profit,current_profit);
+                }
+            }
+        }
+        return profit;
+    }
+    public static int getWater(int[] arr){
+        int n=arr.length;
+        int res=0;
+        for(int i=1;i<n-1;i++){
+            int lmax=arr[i];
+            for(int j=0;j<i;j++){
+                lmax=Math.max(lmax,arr[j]);
+            }
+            int rmax=arr[i];
+            for(int j=i+1;j<n;j++){
+                rmax=Math.max(rmax,arr[j]);
+            }
+            res+=(Math.min(lmax,rmax)-arr[i]);
+
+        }
+        return res;
+    }
+    public static int getWater2(int[] arr){
+        int n=arr.length;
+        int res=0;
+        int[] lmax=new int[n];
+        int[] rmax=new int[n];
+
+        lmax[0]=arr[0];
+        for(int i=1;i<n;i++){
+            lmax[i]=Math.max(arr[i],lmax[i-1]);
+        }
+        rmax[n-1]=arr[n-1];
+        for(int i=n-2;i>=0;i--){
+            rmax[i]=Math.max(arr[i],rmax[i+1]);
+        }
+        for(int i=1;i<=n;i++){
+            res+=(Math.min(lmax[i],rmax[i])-arr[i]);
+        }
+        return res;
+    }
+    public static int maxConsec(int[] arr){
+        int res=0;
+        int n=arr.length;
+        for(int i=0;i<n;i++){
+            int curr=0;
+            for(int j=i+1;j<n;j++){
+                if(arr[i]==1){
+                    curr++;
+                    break;
+                }
+            }
+            res=Math.max(res,curr);
+        }
+    }
+    public static int maxSum(int[] arr,int n){
+        int res=arr[0];
+        for(int i=0;i<arr.length;i++){
+            int curr=0;
+            for(int j=i;j<n;j++){
+                curr+=arr[j];
+                res=Math.max(res,curr);
+            }
+        }
+        return res;
+    }
+    public static int maxSum2(int[] arr){
+        int res=arr[0];
+        int maxEnding=arr[0];
+        for(int i=1;i<arr.length;i++){
+            maxEnding=Math.max(maxEnding+arr[i],arr[i]);
+            res=Math.max(res,maxEnding);
+        }
+        return res;
+    }
+    public static int maxOdd(int[] arr){
+        int n=arr.length;
+        int res=1;
+        for(int i=0;i<n;i++){
+            int curr=1;
+            for(int j=i+1;j<n;j++){
+                if((arr[j]%2==0 && arr[j-1]%2!=0)|| (arr[j]%2!=0 && arr[j-1]%2==0)){
+                    curr++;
+                }
+                else{
+                    break;
+                }
+            }
+            res=Math.max(res,curr);
+        }
+        return res;
+    }
+    public static int maxOdd2(int[] arr){
+        int n=arr.length;
+        int res=1;
+        int curr=1;
+        for(int i=1;i<n;i++){
+            if((arr[i]%2==0 && arr[i-1]%2!=0)|| (arr[i]%2!=0 && arr[i-1]%2==0)){
+                curr++;
+                res=Math.max(res,curr);
+            }
+            else{
+                curr=1;
+            }
+
+        }
+        return res;
+    }
+    public static int normalSum(int[] arr){
+        int res=arr[0];
+        int maxEnding=arr[0];
+        for(int i=1;i<arr.length;i++){
+            maxEnding=Math.max(maxEnding+arr[i],arr[i]);
+            res=Math.max(res,maxEnding);
+        }
+        return res;
+    }
+    public static int overALLMaxsum(int[]arr){
+        int maxSum=normalSum(arr);
+        if(maxSum<=0) return maxSum;
+        int arr_sum=0;
+        for(int i=0;i<arr.length;i++){
+            arr_sum+=arr[i];
+            arr[i]=-arr[i];
+        }
+        int max_circular=arr_sum+normalSum(arr);
+    }
 
 
 }

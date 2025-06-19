@@ -280,6 +280,7 @@ public class ArrayOperation {
             }
             res = Math.max(res, curr);
         }
+        return res;
     }
 
     public static int maxSum(int[] arr, int n) {
@@ -386,13 +387,13 @@ public class ArrayOperation {
         }
         return false;
     }
-    public static int getSum(int[] arr,int start,int end){
-        int result=0;
-        for(int i=start;i<=end;i++){
-            result+=arr[i];
+
+    public static int getSum(int[] arr, int start, int end) {
+        int result = 0;
+        for (int i = start; i <= end; i++) {
+            result += arr[i];
         }
         return result;
-}
-
+    }
 
 }

@@ -8,85 +8,106 @@ import java.util.*;
 
 
 public class Sorting {
-    public static void main(String[] args){
-        int[] arr={5,4,3,2,1};
-        selectionSort(arr,arr.length);
-        System.out.println(Arrays.toString(arr));
+    public static void main(String[] args) {
+        int[] arr = {5, 4, 3, 2, 1};
+        int[] arr2 = {5, 3, 3, 2, 4, 1};
+        intersectionOfArrays(arr,arr2);
     }
-    public static void bubbleSort(int[] arr){
-        int n=arr.length;
+
+    public static void bubbleSort(int[] arr) {
+        int n = arr.length;
         boolean swapped;
-        for(int i=0;i<n-1;i++){
-            swapped=false;
-            for(int j=0;j<n-i-1;j++){
-                if(arr[j]>arr[j+1]){
-                    int temp=arr[j];
-                    arr[j]=arr[j+1];
-                    arr[j+1]=temp;
-                    swapped=true;
+        for (int i = 0; i < n - 1; i++) {
+            swapped = false;
+            for (int j = 0; j < n - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                    swapped = true;
                 }
             }
-            if(!swapped){
+            if (!swapped) {
                 break;
             }
         }
     }
-    public static void selectionSort(int[] arr,int n){
-        for(int i=0;i<n;i++){
-            int min_index=i;
-            for(int j=i+1;j<n;j++){
-                if(arr[j]<arr[min_index]){
-                    min_index=j;
+
+    public static void selectionSort(int[] arr, int n) {
+        for (int i = 0; i < n; i++) {
+            int min_index = i;
+            for (int j = i + 1; j < n; j++) {
+                if (arr[j] < arr[min_index]) {
+                    min_index = j;
                 }
-                int temp=arr[i];
-                arr[i]=arr[min_index];
-                arr[min_index]=temp;
+                int temp = arr[i];
+                arr[i] = arr[min_index];
+                arr[min_index] = temp;
             }
         }
     }
-    public static void insertionSort(int[] arr,int n){
-        for(int i=1;i<n;i++){
-            int key=arr[i];
-            int j=i-1;
-            while(j>=0 && arr[j]>key){
-                arr[j+1]=arr[j];
+
+    public static void insertionSort(int[] arr, int n) {
+        for (int i = 1; i < n; i++) {
+            int key = arr[i];
+            int j = i - 1;
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
                 j--;
             }
-            arr[j+1]=key;
+            arr[j + 1] = key;
 
         }
     }
-    public static void mergeSort(int[] arr,int low,int high,int[] temp){
-        if(low>=high){
+
+    public static void mergeSort(int[] arr, int low, int high, int[] temp) {
+        if (low >= high) {
             return;
         }
-        int mid=low+(high-low)/2;
-        mergeSort(arr,low,mid,temp);
-        mergeSort(arr,mid+1,high,temp);
-        merge(arr,low,mid,high,temp);
+        int mid = low + (high - low) / 2;
+        mergeSort(arr, low, mid, temp);
+        mergeSort(arr, mid + 1, high, temp);
+        merge(arr, low, mid, high, temp);
 
     }
-    public static void merge(int[] arr,int low,int mid,int high,int[] temp){
-        int i=low;
-        int j=mid+1;
-        int k=high;
 
-        while(i<=mid && j<=high){
-            if(arr[i]<=arr[j]){
-                temp[k++]=arr[i++];
+    public static void merge(int[] arr, int low, int mid, int high, int[] temp) {
+        int i = low;
+        int j = mid + 1;
+        int k = high;
+
+        while (i <= mid && j <= high) {
+            if (arr[i] <= arr[j]) {
+                temp[k++] = arr[i++];
+            } else {
+                temp[k++] = arr[i++];
             }
-            else{
-                temp[k++]=arr[i++];
-            }
         }
-        while(i<=mid){
-            temp[k++]=arr[i++];
+        while (i <= mid) {
+            temp[k++] = arr[i++];
         }
-        while(j<=high){
-            temp[k++]=arr[j++];
+        while (j <= high) {
+            temp[k++] = arr[j++];
         }
-        for(int p=low;p<=high;p++){
-            arr[p]=temp[p];
+        for (int p = low; p <= high; p++) {
+            arr[p] = temp[p];
         }
     }
+    public static void intersectionOfArrays(int[] arr1,int[] arr2){
+        int m=arr1.length;
+        int n=arr2.length;
+        for(int i=0;i<m;i++){
+            if(i>0 && arr1[i]==arr1[i-1]){
+                continue;
+            }
+            for(int j=0;j<n;j++){
+                if(arr1[i]==arr2[j]){
+                    System.out.println(arr1[i]);
+                    break;
+                }
+            }
+        }
+    }
+
+
 }

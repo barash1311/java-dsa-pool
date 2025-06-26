@@ -108,6 +108,26 @@ public class Part {
             arr[j]=temp;
         }
     }
+    public static int maxGuest(int[] arr,int[] dep,int n){
+        Arrays.sort(arr);
+        Arrays.sort(dep);
+        int i=1;
+        int j=0;
+        int curr=1;
+        int res=1;
+        while(i<n && j<n){
+            if(arr[i]<=dep[j]){
+                curr++;
+                i++;
+            }
+            else{
+                curr--;
+                j++;
+            }
+            res=Math.max(res,curr);
+        }
+        return res;
+    }
 
 
 }
